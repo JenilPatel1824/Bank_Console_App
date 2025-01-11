@@ -5,13 +5,25 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class Account {
 
-    private String holder_name;
+    private String acc_no;
+    //private User user;
     private AtomicReference<Double> balance;
 
-    public Account(String holder_name)
+    public Account(String acc_no)
     {
-        this.holder_name=holder_name;
+        this.acc_no=acc_no;
+        //this.user=user;
         this.balance=new AtomicReference<Double>(0.0);
+    }
+    public Account(String acc_no,double balance)
+    {
+        this.acc_no=acc_no;
+        if(balance>=0) {
+            this.balance = new AtomicReference<>(balance);
+        }
+        else {
+            throw new IllegalArgumentException("Please enter valid initial amount: ");
+        }
     }
 
     public abstract String display_account_type();
@@ -38,17 +50,27 @@ public abstract class Account {
         return balance.updateAndGet(current_balance->current_balance-amount);
     }
 
-    public String getHolder_name() {
-        return holder_name;
+
+
+    public String getAcc_no() {
+        return acc_no;
     }
 
-    public void setHolder_name(String holder_name) {
-        this.holder_name = holder_name;
+    public void setAcc_no(String acc_no) {
+        this.acc_no = acc_no;
     }
 
     public double getBalance()
     {
         return balance.get();
     }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
 }

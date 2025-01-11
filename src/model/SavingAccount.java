@@ -2,9 +2,13 @@ package model;
 
 public class SavingAccount extends Account {
 
-    public SavingAccount(String holder_name)
+    public SavingAccount(String acc_no)
     {
-        super(holder_name);
+        super(acc_no);
+    }
+    public SavingAccount(String acc_no, double balance)
+    {
+        super(acc_no,balance);
     }
     @Override
     public String display_account_type()
